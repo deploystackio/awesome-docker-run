@@ -12,10 +12,6 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
 - [How to contribute](#how-to-contribute)
 - [Community](#community)
 - [Applications](#applications)
-  - [Automation](#automation)
-  - [CMS](#cms)
-  - [List](#list)
-  - [Web Server](#web-server)
 - [License](#license)
 <!-- TOC_END -->
 
@@ -50,24 +46,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ## Applications
 
 <!-- APPLICATIONS_START -->
-
-### Automation
-
-- [n8n](commands/n8n/) - Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
-
-### CMS
-
-- [Ghost](commands/ghost/) - Independent technology for modern publishing, memberships, subscriptions and newsletters.
-
-### List
-
-- [alist](commands/alist/) - 🗂️A file list/WebDAV program that supports multiple storages, powered by Gin and Solidjs. / 一个支持多存储的文件列表/WebDAV程序，使用 Gin 和 Solidjs。
-
-### Web Server
-
-- [httpd](commands/apache/) - Mirror of Apache HTTP Server. Issues: http://issues.apache.org
-- [nginx](commands/nginx/) - The official NGINX Open Source repository.
-
 <!-- APPLICATIONS_END -->
 
 ## License
