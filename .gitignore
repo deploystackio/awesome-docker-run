@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnpm-debug.log
+.npm
+
+# GitHub Action validation results
+.github/validation-results.json
+
+# IDE and editor folders
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store

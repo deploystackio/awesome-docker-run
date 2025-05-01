@@ -1,0 +1,211 @@
+name: Validate Submission
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+    paths:
+      - 'commands/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: |
+          cd .github/scripts
+          npm ci
+          
+      - name: Get changed files
+        id: files
+        uses: tj-actions/changed-files@v46
+        
+      - name: Debug changed files
+        run: |
+          echo "All changed files:"
+          echo "${{ steps.files.outputs.all_changed_files }}"
+          echo "Commands dir changes:"
+          for file in ${{ steps.files.outputs.all_changed_files }}; do
+            if [[ "$file" == commands/* ]]; then
+              echo "- $file"
+            fi
+          done
+          
+      - name: Run validation
+        id: validation
+        run: |
+          node .github/scripts/validate.js ${{ steps.files.outputs.all_changed_files }}
+          
+      - name: Post validation results
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            
+            // Read validation results file
+            let validationResults;
+            try {
+              validationResults = JSON.parse(fs.readFileSync('.github/validation-results.json', 'utf8'));
+            } catch (error) {
+              console.error('Error reading validation results:', error);
+              validationResults = { errors: { general: ['Validation process failed'] } };
+            }
+            
+            // Format error message
+            let message = '## Validation Failed ❌\n\n';
+            
+            if (validationResults.errors) {
+              message += 'There are issues with your submission:\n\n';
+              
+              for (const [file, errors] of Object.entries(validationResults.errors)) {
+                message += `### ${file}\n`;
+                for (const error of errors) {
+                  message += `- ${error}\n`;
+                }
+                message += '\n';
+              }
+            }
+            
+            message += 'Please make sure you follow the contribution guidelines:\n\n';
+            message += '1. Create your file at `commands/your-app-name/docker-run.md`\n';
+            message += '2. Include a valid GitHub repository URL\n';
+            message += '3. Add a proper Docker run command\n\n';
+            message += 'See [CONTRIBUTING.md](../../CONTRIBUTING.md) for more details.';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
+
+      # Handle validation failure - remove label if it exists
+      - name: Handle validation failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // Check if there were changes in commands directory
+            const changedFiles = '${{ steps.files.outputs.all_changed_files }}'.split(' ');
+            const commandsChanged = changedFiles.some(file => file.startsWith('commands/'));
+            
+            if (!commandsChanged) {
+              console.log('No changes in commands directory. Skipping label removal.');
+              return;
+            }
+            
+            try {
+              // Check if the validation-passed label exists on this PR
+              const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+              
+              const hasValidationLabel = labels.some(label => label.name === 'validation-passed');
+              
+              // If the validation-passed label exists, remove it
+              if (hasValidationLabel) {
+                await github.rest.issues.removeLabel({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: 'validation-passed'
+                });
+                
+                console.log('Removed validation-passed label due to validation failure');
+                
+                // Add a comment notifying about the label removal
+                await github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: '## Validation Status Changed ❌\n\nYour submission has failed validation. The "validation-passed" label has been removed. Please check the validation errors and make the necessary corrections.'
+                });
+              }
+            } catch (error) {
+              console.error('Error handling validation failure:', error);
+            }
+      
+      - name: Mark validation success
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // Check if there were changes in commands directory
+            const changedFiles = '${{ steps.files.outputs.all_changed_files }}'.split(' ');
+            const commandsChanged = changedFiles.some(file => file.startsWith('commands/'));
+            
+            if (!commandsChanged) {
+              console.log('No changes in commands directory. Skipping success comment.');
+              return;
+            }
+            
+            // Add a success comment
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '## Validation Passed ✅\n\nYour submission has passed the automated validation checks. A maintainer will review your PR soon.'
+            });
+            
+            // Add the "validation-passed" label
+            await github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['validation-passed']
+            });
+            
+            // Check if this is an update to an existing command
+            try {
+              const fs = require('fs');
+              let validationResults;
+              
+              try {
+                validationResults = JSON.parse(fs.readFileSync('.github/validation-results.json', 'utf8'));
+              } catch (error) {
+                console.error('Error reading validation results:', error);
+                return;
+              }
+              
+              // If there are updates detected, add the command-update label
+              if (validationResults.updates && validationResults.updates.length > 0) {
+                console.log('Command updates detected:', validationResults.updates);
+                
+                // Add the "command-update" label
+                await github.rest.issues.addLabels({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  labels: ['command-update']
+                });
+                
+                // Add a comment about the update
+                await github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: '## Command Update Detected 🔄\n\nThis PR updates an existing Docker run command. The validation has passed and the PR has been labeled accordingly.'
+                });
+              }
+            } catch (error) {
+              console.error('Error checking for command updates:', error);
+            }

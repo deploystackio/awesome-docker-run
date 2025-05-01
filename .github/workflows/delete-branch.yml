@@ -1,0 +1,33 @@
+name: Delete Branch After Merge
+
+on:
+  pull_request_target:
+    types: [closed]
+
+permissions:
+  pull-requests: write
+  issues: write
+  contents: write
+
+jobs:
+  delete-branch:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref != 'main' && github.event.pull_request.head.ref != 'develop'
+    steps:
+      - name: Delete branch
+        uses: SvanBoxel/delete-merged-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Add comment about deleted branch
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const branchName = context.payload.pull_request.head.ref;
+            github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Branch \`${branchName}\` has been automatically deleted after successful merge.`
+            });

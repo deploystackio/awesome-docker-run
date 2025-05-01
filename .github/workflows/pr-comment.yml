@@ -1,0 +1,43 @@
+name: PR Comment
+
+on:
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    # Skip this workflow for Dependabot PRs
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - name: Add welcome comment
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Thank you for your contribution! 🎉
+
+            We appreciate your interest in improving the awesome-docker-run collection!
+
+            Our team will review your submission as soon as possible. In the meantime:
+            - Make sure your Docker run command follows our contribution guidelines
+            - Check that the command uses a publicly accessible image
+            - Verify that your PR includes all required information
+
+            Once approved and merged, your application will be:
+            1. Added to the DeployStack catalog
+            2. Made available via our one-click deployment system
+            3. Listed in the README of this repository
+
+            Feel free to join our [Discord community](https://discord.gg/42Ce3S7b3b) if you have any questions.
+
+            Thank you for helping make deploying applications easier for everyone!`
+            })

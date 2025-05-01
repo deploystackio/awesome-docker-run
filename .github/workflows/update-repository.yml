@@ -1,0 +1,276 @@
+name: Update Repository Index and README
+
+on:
+  pull_request_target:
+    types: [closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  check-label:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    outputs:
+      has_valid_label: ${{ steps.check-label.outputs.has_valid_label }}
+    steps:
+      - name: Check for validation-passed label
+        id: check-label
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.APP_INSTALLATION_TOKEN }}
+          script: |
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            
+            const hasValidLabel = labels.some(label => label.name === 'validation-passed');
+            console.log(`Pull request has validation-passed label: ${hasValidLabel}`);
+            
+            core.setOutput('has_valid_label', hasValidLabel ? 'true' : 'false');
+
+  update-index:
+    needs: check-label
+    runs-on: ubuntu-latest
+    if: needs.check-label.outputs.has_valid_label == 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.APP_INSTALLATION_TOKEN }}
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v46
+        with:
+          files: "commands/**"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install script dependencies
+        run: npm install
+        working-directory: .github/scripts
+
+      - name: Update repo index
+        id: update_index
+        env:
+          GITHUB_TOKEN: ${{ secrets.APP_INSTALLATION_TOKEN }}
+        run: |
+          # Get list of changed files from the action output
+          CHANGED_FILES="${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}"
+          
+          # Run the Node.js script to update the index
+          node .github/scripts/update-repo-index.js "$CHANGED_FILES"
+          
+          # Check if there are changes to commit
+          if git diff --name-only | grep -q "repo-index.json"; then
+            echo "changes_made=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes_made=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push if index changed
+        if: steps.update_index.outputs.changes_made == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.APP_INSTALLATION_TOKEN }}
+        run: |
+          # Set git config
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          # Stage changes
+          git add .github/repo-index.json
+
+          # Stash changes
+          git stash push -m "repo-index update by workflow"
+
+          # Pull latest changes with rebase
+          RETRY_COUNT=0
+          MAX_RETRIES=5
+          RETRY_DELAY=5
+          while ! git pull --rebase origin main; do
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
+              echo "Pull failed after $MAX_RETRIES attempts."
+              git rebase --abort || echo "Rebase abort failed, continuing..."
+              git stash pop || echo "Stash pop failed after pull failure."
+              exit 1
+            fi
+            echo "Pull failed, retrying in $RETRY_DELAY seconds... (Attempt $RETRY_COUNT/$MAX_RETRIES)"
+            sleep $RETRY_DELAY
+            RETRY_DELAY=$((RETRY_DELAY * 2)) # Exponential backoff
+          done
+
+          # Apply stashed changes
+          if ! git stash pop; then
+            echo "Stash pop failed, likely due to conflicts after rebase. Manual intervention required."
+            exit 1
+          fi
+
+          # Re-add changes after stash pop
+          git add .github/repo-index.json
+
+          # Commit and push
+          git commit -m "chore: update repository index with enhanced metadata [skip ci]"
+          git push origin main
+
+  update-readme:
+    needs: [check-label, update-index]
+    runs-on: ubuntu-latest
+    if: needs.check-label.outputs.has_valid_label == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          # Ensure we get the latest code including changes from previous job
+          fetch-depth: 0
+          token: ${{ secrets.APP_INSTALLATION_TOKEN }}
+
+      - name: Fetch latest changes
+        run: |
+          # Fetch the latest changes from the remote repository
+          git fetch origin main
+          # Force checkout to the latest commit on main (including changes from previous job)
+          git checkout -B main origin/main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install script dependencies
+        run: npm install
+        working-directory: .github/scripts
+
+      - name: Update Applications list in README
+        id: update_readme
+        run: node .github/scripts/update-readme-list.js
+
+      - name: Commit and push if README changed
+        if: steps.update_readme.outputs.changes_made == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.APP_INSTALLATION_TOKEN }}
+        run: |
+          # Set git config
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Stage changes
+          git add README.md
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          # Stash changes
+          git stash push -m "readme update by workflow"
+
+          # Pull latest changes with rebase
+          RETRY_COUNT=0
+          MAX_RETRIES=5
+          RETRY_DELAY=5
+          while ! git pull --rebase origin main; do
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
+              echo "Pull failed after $MAX_RETRIES attempts."
+              git rebase --abort || echo "Rebase abort failed, continuing..."
+              git stash pop || echo "Stash pop failed after pull failure."
+              exit 1
+            fi
+            echo "Pull failed, retrying in $RETRY_DELAY seconds... (Attempt $RETRY_COUNT/$MAX_RETRIES)"
+            sleep $RETRY_DELAY
+            RETRY_DELAY=$((RETRY_DELAY * 2)) # Exponential backoff
+          done
+
+          # Apply stashed changes
+          if ! git stash pop; then
+            echo "Stash pop failed, likely due to conflicts after rebase. Manual intervention required."
+            exit 1
+          fi
+
+          # Re-add README.md in case stash pop changed the staged status
+          git add README.md
+
+          # Commit and push
+          git commit -m "docs: Update README with latest applications list [skip ci]"
+          git push origin main
+
+  remove-validation-label:
+    needs: [update-readme]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Remove validation-passed label
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.APP_INSTALLATION_TOKEN }}
+          script: |
+            try {
+              await github.rest.issues.removeLabel({
+                issue_number: context.payload.pull_request.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'validation-passed'
+              });
+              
+              console.log('Successfully removed validation-passed label');
+            } catch (error) {
+              // If the label doesn't exist, don't fail the workflow
+              if (error.status === 404) {
+                console.log('Label validation-passed not found on this PR, continuing');
+              } else {
+                console.error('Error removing label:', error);
+                throw error;
+              }
+            }
+  remove-command-update-label:
+      needs: [update-readme]
+      runs-on: ubuntu-latest
+      if: always()
+      steps:
+        - name: Remove command-update label
+          uses: actions/github-script@v7
+          with:
+            github-token: ${{ secrets.APP_INSTALLATION_TOKEN }}
+            script: |
+              try {
+                const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+                  issue_number: context.payload.pull_request.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo
+                });
+                
+                const hasCommandUpdateLabel = labels.some(label => label.name === 'command-update');
+                
+                if (hasCommandUpdateLabel) {
+                  await github.rest.issues.removeLabel({
+                    issue_number: context.payload.pull_request.number,
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    name: 'command-update'
+                  });
+                  
+                  console.log('Successfully removed command-update label');
+                } else {
+                  console.log('Label command-update not found on this PR, skipping removal');
+                }
+              } catch (error) {
+                // If the label doesn't exist, don't fail the workflow
+                if (error.status === 404) {
+                  console.log('Label command-update not found on this PR, continuing');
+                } else {
+                  console.error('Error removing label:', error);
+                  throw error;
+                }
+              }
+                
