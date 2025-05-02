@@ -40,5 +40,11 @@
     "category": "RSS",
     "name": "wewe-rss",
     "description": "🤗更优雅的微信公众号订阅方式，支持私有化部署、微信公众号RSS生成（基于微信读书）"
+  },
+  "https://github.com/marcopiovanello/yt-dlp-web-ui": {
+    "path": "commands/yt-dlp-web-ui",
+    "category": "YouTube",
+    "name": "yt-dlp-web-ui",
+    "description": "A terrible web ui and RPC server for yt-dlp. Designed to be self-hosted."
   }
 }
