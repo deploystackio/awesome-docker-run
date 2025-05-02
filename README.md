@@ -15,6 +15,7 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
   - [AI](#ai)
   - [Automation](#automation)
   - [CMS](#cms)
+  - [eBook](#ebook)
   - [Monitoring](#monitoring)
   - [RSS](#rss)
   - [YouTube](#youtube)
@@ -66,6 +67,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### CMS
 
 - [Ghost](commands/ghost/) - Independent technology for modern publishing, memberships, subscriptions and newsletters.
+
+### eBook
+
+- [BookBounty](commands/BookBounty/) - Retrieve missing Readarr books from Library Genesis.
 
 ### Monitoring
 
