@@ -17,7 +17,7 @@
     "name": "Ghost",
     "description": "Independent technology for modern publishing, memberships, subscriptions and newsletters."
   },
-  "https://github.com/nginx/nginx": {
+  "https://github.com/louislam/uptime-kuma": {
     "path": "commands/uptime-kuma",
     "category": "Monitoring",
     "name": "nginx",
