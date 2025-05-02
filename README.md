@@ -14,6 +14,7 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
 - [Applications](#applications)
   - [AI](#ai)
   - [Automation](#automation)
+  - [CMS](#cms)
 - [License](#license)
 <!-- TOC_END -->
 
@@ -56,6 +57,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### Automation
 
 - [n8n](commands/n8n/) - Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+
+### CMS
+
+- [Ghost](commands/ghost/) - Independent technology for modern publishing, memberships, subscriptions and newsletters.
 
 <!-- APPLICATIONS_END -->
 
