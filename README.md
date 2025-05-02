@@ -54,6 +54,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### AI
 
 - [kimi-free-api](commands/kimi-free-api/) - 🚀 KIMI AI 长文本大模型逆向API【特长：长文本解读整理】，支持高速流式输出、智能体对话、联网搜索、探索版、K1思考模型、长文档解读、图像解析、多轮对话，零配置部署，多路token支持，自动清理会话痕迹，仅供测试，如需商用请前往官方开放平台。
+- [NextChat](commands/NextChat/) - ✨ Light and Fast AI Assistant. Support: Web | iOS | MacOS | Android |  Linux | Windows
 
 ### Automation
 
