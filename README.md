@@ -16,6 +16,7 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
   - [Automation](#automation)
   - [CMS](#cms)
   - [Monitoring](#monitoring)
+  - [RSS](#rss)
 - [License](#license)
 <!-- TOC_END -->
 
@@ -68,6 +69,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### Monitoring
 
 - [nginx](commands/uptime-kuma/) - The official NGINX Open Source repository.
+
+### RSS
+
+- [wewe-rss](commands/wewe-rss/) - 🤗更优雅的微信公众号订阅方式，支持私有化部署、微信公众号RSS生成（基于微信读书）
 
 <!-- APPLICATIONS_END -->
 
