@@ -46,5 +46,11 @@
     "category": "YouTube",
     "name": "yt-dlp-web-ui",
     "description": "A terrible web ui and RPC server for yt-dlp. Designed to be self-hosted."
+  },
+  "https://github.com/nbr23/youtube-dl-server": {
+    "path": "commands/youtube-dl-server",
+    "category": "YouTube",
+    "name": "youtube-dl-server",
+    "description": "Web / REST interface for downloading youtube videos onto a server."
   }
 }
