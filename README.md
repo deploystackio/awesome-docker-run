@@ -15,6 +15,7 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
   - [AI](#ai)
   - [Automation](#automation)
   - [CMS](#cms)
+  - [Monitoring](#monitoring)
 - [License](#license)
 <!-- TOC_END -->
 
@@ -61,6 +62,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### CMS
 
 - [Ghost](commands/ghost/) - Independent technology for modern publishing, memberships, subscriptions and newsletters.
+
+### Monitoring
+
+- [nginx](commands/uptime-kuma/) - The official NGINX Open Source repository.
 
 <!-- APPLICATIONS_END -->
 
