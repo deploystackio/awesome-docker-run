@@ -34,5 +34,11 @@
     "category": "AI",
     "name": "chat2api",
     "description": "A service that can convert ChatGPT on the web to OpenAI API format."
+  },
+  "https://github.com/cooderl/wewe-rss": {
+    "path": "commands/wewe-rss",
+    "category": "RSS",
+    "name": "wewe-rss",
+    "description": "🤗更优雅的微信公众号订阅方式，支持私有化部署、微信公众号RSS生成（基于微信读书）"
   }
 }
