@@ -17,6 +17,7 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
   - [CMS](#cms)
   - [Monitoring](#monitoring)
   - [RSS](#rss)
+  - [YouTube](#youtube)
 - [License](#license)
 <!-- TOC_END -->
 
@@ -73,6 +74,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### RSS
 
 - [wewe-rss](commands/wewe-rss/) - 🤗更优雅的微信公众号订阅方式，支持私有化部署、微信公众号RSS生成（基于微信读书）
+
+### YouTube
+
+- [yt-dlp-web-ui](commands/yt-dlp-web-ui/) - A terrible web ui and RPC server for yt-dlp. Designed to be self-hosted.
 
 <!-- APPLICATIONS_END -->
 
