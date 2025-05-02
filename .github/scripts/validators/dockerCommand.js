@@ -20,7 +20,8 @@ function validateDockerCommand(fileContent, filePath) {
   }
   
   // Check that Docker run command includes a port mapping
-  const portRegex = /-p\s+(\d+):(\d+)|--publish\s+(\d+):(\d+)/;
+  // Updated regex to handle quoted port mappings as well
+  const portRegex = /-p\s+["']?(\d+):(\d+)["']?|--publish\s+["']?(\d+):(\d+)["']?/;
   if (!portRegex.test(dockerRunCmd)) {
     return `Docker run command must include a port mapping using -p or --publish in ${filePath}`;
   }
