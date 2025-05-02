@@ -76,6 +76,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 
 - [changedetection.io](commands/changedetection/) - The best and simplest free open source web page change detection, website watcher,  restock monitor and notification service. Restock Monitor, change detection. Designed for simplicity - Simply monitor which websites had a text change for free. Free Open source web page change detection, Website defacement monitoring, Price change notification
 - [nginx](commands/uptime-kuma/) - The official NGINX Open Source repository.
+- [uptime-kuma](commands/uptime-kuma/) - A fancy self-hosted monitoring tool
 
 ### RSS
 
