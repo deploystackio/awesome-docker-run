@@ -22,5 +22,11 @@
     "category": "Monitoring",
     "name": "nginx",
     "description": "The official NGINX Open Source repository."
+  },
+  "https://github.com/ChatGPTNextWeb/NextChat": {
+    "path": "commands/NextChat",
+    "category": "AI",
+    "name": "NextChat",
+    "description": "✨ Light and Fast AI Assistant. Support: Web | iOS | MacOS | Android |  Linux | Windows"
   }
 }
