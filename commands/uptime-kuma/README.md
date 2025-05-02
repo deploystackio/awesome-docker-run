@@ -1,6 +1,6 @@
-# 🚀 IaC Templates for awesome-docker-run
+# 🚀 IaC Templates for uptime-kuma
 
-> View deploy stats for awesome-docker-run in [DeployStack catalog](https://deploystack.io/c/nginx-nginx)
+> View deploy stats for uptime-kuma in [DeployStack catalog](https://deploystack.io/c/louislam-uptime-kuma)
 
 ## ⚡ One-Click Deploy
 
@@ -9,11 +9,11 @@
 | AWS | <a href="[deploy_path_aws_cfn]"><img src="https://github.com/htdio-stg/deploy-templates/blob/main/.assets/img/aws.svg" height="38"></a> |
 | DigitalOcean | <a href="[deploy_path_do_dop]"><img src="https://github.com/htdio-stg/deploy-templates/blob/main/.assets/img/do.svg" height="38"></a> |
 | Render | <a href="[deploy_path_rnd_rnd]"><img src="https://github.com/htdio-stg/deploy-templates/blob/main/.assets/img/rnd.svg" height="38"></a> |
-| Helm | `helm repo add deploystack https://deploystackio.github.io/deploy-templates/`<br>`helm repo update`<br>`helm install awesome-docker-run deploystack/nginx-nginx` |
+| Helm | `helm repo add deploystack https://deploystackio.github.io/deploy-templates/`<br>`helm repo update`<br>`helm install uptime-kuma deploystack/louislam-uptime-kuma` |
 
 ## 📦 IaC templates
 
-- IaC templates are stored within the [deploystackio/deploy-templates](https://github.com/deploystackio/deploy-templates/tree/main/nginx-nginx) repository.
+- IaC templates are stored within the [deploystackio/deploy-templates](https://github.com/deploystackio/deploy-templates/tree/main/louislam-uptime-kuma) repository.
 
 ## 🔄 Updates
 
