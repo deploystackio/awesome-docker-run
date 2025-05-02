@@ -28,5 +28,11 @@
     "category": "AI",
     "name": "NextChat",
     "description": "✨ Light and Fast AI Assistant. Support: Web | iOS | MacOS | Android |  Linux | Windows"
+  },
+  "https://github.com/lanqian528/chat2api": {
+    "path": "commands/chat2api",
+    "category": "AI",
+    "name": "chat2api",
+    "description": "A service that can convert ChatGPT on the web to OpenAI API format."
   }
 }
