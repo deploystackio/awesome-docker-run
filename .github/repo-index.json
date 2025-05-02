@@ -52,5 +52,11 @@
     "category": "YouTube",
     "name": "youtube-dl-server",
     "description": "Web / REST interface for downloading youtube videos onto a server."
+  },
+  "https://github.com/TheWicklowWolf/BookBounty": {
+    "path": "commands/BookBounty",
+    "category": "eBook",
+    "name": "BookBounty",
+    "description": "Retrieve missing Readarr books from Library Genesis."
   }
 }
