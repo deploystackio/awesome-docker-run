@@ -1,5 +1,5 @@
 ---
-repo: "https://github.com/nginx/nginx"
+repo: "https://github.com/louislam/uptime-kuma"
 category: "Monitoring"
 ---
 
