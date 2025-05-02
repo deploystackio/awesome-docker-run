@@ -16,5 +16,11 @@
     "category": "CMS",
     "name": "Ghost",
     "description": "Independent technology for modern publishing, memberships, subscriptions and newsletters."
+  },
+  "https://github.com/nginx/nginx": {
+    "path": "commands/uptime-kuma",
+    "category": "Monitoring",
+    "name": "nginx",
+    "description": "The official NGINX Open Source repository."
   }
 }
