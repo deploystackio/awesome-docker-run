@@ -21,6 +21,8 @@ function validateDockerImageTag(fileContent, filePath) {
   
   // Find the image part (it should be the first non-flag argument after "docker run")
   let imageIndex = -1;
+  
+  // Start after "docker run"
   for (let i = 2; i < parts.length; i++) {
     // Skip flags and their values
     if (parts[i].startsWith('-')) {
@@ -45,7 +47,6 @@ function validateDockerImageTag(fileContent, filePath) {
   const image = parts[imageIndex];
   
   // Check if the image has a tag (contains a colon that's not part of a registry port)
-  // Fixed regex to properly handle username/repository:tag format
   const hasTag = /:([^/]+)$/.test(image);
   
   if (!hasTag) {
