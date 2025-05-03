@@ -86,6 +86,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### Database
 
 - [chartdb](commands/chartdb/) - Database diagrams editor that allows you to visualize and design your DB with a single query.
+- [meilisearch](commands/meilisearch/) - A lightning-fast search engine API bringing AI-powered hybrid search to your sites and applications.
 
 ### eBook
 
