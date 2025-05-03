@@ -82,5 +82,11 @@
     "category": "Analytics",
     "name": "EDA",
     "description": "Enterprise Data Analytics by Jortilles ( EDA )"
+  },
+  "https://github.com/alexta69/metube": {
+    "path": "commands/metube",
+    "category": "YouTube",
+    "name": "metube",
+    "description": "Self-hosted YouTube downloader (web UI for youtube-dl / yt-dlp)"
   }
 }
