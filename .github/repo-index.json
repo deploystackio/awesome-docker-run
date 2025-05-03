@@ -88,5 +88,11 @@
     "category": "YouTube",
     "name": "metube",
     "description": "Self-hosted YouTube downloader (web UI for youtube-dl / yt-dlp)"
+  },
+  "https://github.com/ErugoOSS/Erugo": {
+    "path": "commands/Erugo",
+    "category": "File Sharing",
+    "name": "Erugo",
+    "description": "A powerful, self-hosted file-sharing platform built with PHP and Laravel with a Vue.js frontend. It offers secure, customizable file-transfer capabilities through an elegant user interface, giving you complete control over your data while providing a seamless experience for both senders and recipients."
   }
 }
