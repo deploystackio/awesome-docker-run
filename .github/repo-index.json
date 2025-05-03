@@ -112,5 +112,11 @@
     "category": "AI",
     "name": "gateway",
     "description": "A blazing fast AI Gateway with integrated guardrails. Route to 200+ LLMs, 50+ AI Guardrails with 1 fast & friendly API."
+  },
+  "https://github.com/meilisearch/meilisearch": {
+    "path": "commands/meilisearch",
+    "category": "Database",
+    "name": "meilisearch",
+    "description": "A lightning-fast search engine API bringing AI-powered hybrid search to your sites and applications."
   }
 }
