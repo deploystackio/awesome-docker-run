@@ -124,5 +124,11 @@
     "category": "Database",
     "name": "surrealdb",
     "description": "A scalable, distributed, collaborative, document-graph database, for the realtime web"
+  },
+  "https://github.com/qdrant/qdrant": {
+    "path": "commands/qdrant",
+    "category": "Database",
+    "name": "qdrant",
+    "description": "Qdrant - High-performance, massive-scale Vector Database and Vector Search Engine for the next generation of AI. Also available in the cloud https://cloud.qdrant.io/"
   }
 }
