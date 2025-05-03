@@ -16,99 +16,43 @@ function validateDockerImageTag(fileContent, filePath) {
   // Extract the Docker run command
   const dockerRunCmd = dockerRunMatch[1].trim();
   
-  // Parse the Docker command into components
-  const parsedCommand = parseDockerCommand(dockerRunCmd);
+  // Tokenize the command properly
+  const tokens = tokenizeCommand(dockerRunCmd);
   
-  if (!parsedCommand.image) {
+  // Find the image index in the command
+  const imageIndex = findImageIndex(tokens);
+  
+  if (imageIndex === -1 || imageIndex >= tokens.length) {
     return `No Docker image found in the run command in ${filePath}`;
   }
   
+  const image = tokens[imageIndex];
+  
   // Check if the image has a tag (contains a colon that's not part of a registry port)
-  const hasTag = /:([^/]+)$/.test(parsedCommand.image);
+  const hasTag = /:([^/]+)$/.test(image);
   
   if (!hasTag) {
-    return `Docker image "${parsedCommand.image}" in ${filePath} does not specify a tag. Please use a specific tag (e.g., ${parsedCommand.image}:latest)`;
+    return `Docker image "${image}" in ${filePath} does not specify a tag. Please use a specific tag (e.g., ${image}:latest)`;
   }
   
   return null; // No errors
 }
 
 /**
- * Parses a Docker run command into its components
- * @param {string} commandLine - Docker run command to parse
- * @returns {Object} Object with image and other command components
+ * Tokenizes a command string respecting quotes
+ * @param {string} cmd - Command string to tokenize
+ * @returns {string[]} Array of tokens
  */
-function parseDockerCommand(commandLine) {
-  // Split the command by whitespace, preserving quoted strings
-  const parts = splitCommandLine(commandLine);
-  
-  const result = {
-    image: null,
-    entrypoint: null,
-    command: []
-  };
-  
-  // Start after "docker run"
-  let i = 2;
-  
-  // Process flags and their values
-  while (i < parts.length) {
-    const part = parts[i];
-    
-    // Check for entrypoint flag
-    if (part === '--entrypoint') {
-      if (i + 1 < parts.length) {
-        result.entrypoint = parts[i + 1];
-        i += 2;
-        continue;
-      }
-    }
-    
-    // Skip other flags and their values
-    if (part.startsWith('-')) {
-      // If it's a flag with a value (like -p 80:80), skip the next part
-      if (!part.includes('=') && 
-          i + 1 < parts.length && 
-          !parts[i + 1].startsWith('-')) {
-        i += 2;
-      } else {
-        i += 1;
-      }
-      continue;
-    }
-    
-    // First non-flag argument should be the image
-    if (!result.image) {
-      result.image = part;
-    } else {
-      // Anything after the image is considered part of the command
-      result.command.push(part);
-    }
-    
-    i += 1;
-  }
-  
-  return result;
-}
-
-/**
- * Splits a command line string into an array of arguments, preserving quoted strings
- * @param {string} cmdLine - Command line string to split
- * @returns {string[]} Array of command arguments
- */
-function splitCommandLine(cmdLine) {
-  const result = [];
+function tokenizeCommand(cmd) {
+  const tokens = [];
   let current = '';
   let inQuote = false;
   let quoteChar = '';
   
-  // Remove line continuations
-  cmdLine = cmdLine.replace(/\s*\\\s*\n\s*/g, ' ');
-  
-  for (let i = 0; i < cmdLine.length; i++) {
-    const char = cmdLine[i];
+  for (let i = 0; i < cmd.length; i++) {
+    const char = cmd[i];
     
-    if ((char === '"' || char === "'") && (i === 0 || cmdLine[i-1] !== '\\')) {
+    if ((char === '"' || char === "'") && (i === 0 || cmd[i-1] !== '\\')) {
       if (!inQuote) {
         inQuote = true;
         quoteChar = char;
@@ -120,7 +64,7 @@ function splitCommandLine(cmdLine) {
       }
     } else if (char === ' ' && !inQuote) {
       if (current) {
-        result.push(current);
+        tokens.push(current);
         current = '';
       }
     } else {
@@ -129,10 +73,93 @@ function splitCommandLine(cmdLine) {
   }
   
   if (current) {
-    result.push(current);
+    tokens.push(current);
   }
   
-  return result;
+  return tokens;
+}
+
+/**
+ * Finds the index of the Docker image in the command tokens
+ * @param {string[]} tokens - Tokenized command
+ * @returns {number} Index of the image or -1 if not found
+ */
+function findImageIndex(tokens) {
+  if (tokens.length < 3 || tokens[0] !== 'docker' || tokens[1] !== 'run') {
+    return -1;
+  }
+
+  // Options known to take exactly one argument
+  // Note: This list might not be exhaustive but covers common cases.
+  const optionsWithArgs = new Set([
+    '-p', '--publish',
+    '-v', '--volume',
+    '-e', '--env',
+    '--name',
+    '--network',
+    '--user', '-u',
+    '--workdir', '-w',
+    '--label', '-l',
+    '--add-host',
+    '--device',
+    '--env-file',
+    '--log-driver',
+    '--log-opt',
+    '--mount',
+    '--ulimit',
+    '--entrypoint',
+    '--hostname', '-h',
+    '--memory', '-m',
+    '--cpus',
+    '--gpus',
+    '--runtime',
+    '--security-opt',
+    '--storage-opt',
+    '--tmpfs',
+    '--restart', // Takes an argument like 'always' or 'on-failure:5'
+    // Add more as needed
+  ]);
+
+  let i = 2; // Start after "docker run"
+  while (i < tokens.length) {
+    const token = tokens[i];
+
+    if (token.startsWith('-')) {
+      let option = token;
+      let valueIncluded = false;
+
+      // Handle combined options like --option=value
+      if (token.includes('=')) {
+        const parts = token.split('=', 2);
+        option = parts[0];
+        valueIncluded = true; // Value is part of this token
+        i++; // Consume this token
+      }
+      // Handle separate option and value
+      else if (optionsWithArgs.has(option)) {
+        // Check if there is a next token to be the value
+        if (i + 1 < tokens.length) {
+          // Assume the next token is the value, even if it starts with '-'
+          // Docker CLI generally treats the next token as the value for these options.
+          i += 2; // Consume option and value
+        } else {
+          // Option requires value, but none provided (error state, but let validation catch it later)
+          i++; // Consume just the option
+        }
+      }
+      // Handle boolean flags or combined short flags like -it
+      else {
+         // Assume it's a flag (or multiple combined flags like -it) that doesn't take a value
+         i++; // Consume the flag token
+      }
+      continue; // Move to the next potential token
+    } else {
+      // This is the first token that doesn't start with '-' and wasn't consumed as an argument
+      return i; // Found the image
+    }
+  }
+
+  return -1; // Image not found
 }
 
 module.exports = { validateDockerImageTag };
