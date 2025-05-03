@@ -64,6 +64,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 
 ### Analytics
 
+- [EDA](commands/EDA/) - Enterprise Data Analytics by Jortilles ( EDA )
 - [liwan](commands/liwan/) - liwan - Lightweight Analytics
 
 ### Audio
