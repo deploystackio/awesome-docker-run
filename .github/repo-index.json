@@ -94,5 +94,11 @@
     "category": "File Sharing",
     "name": "Erugo",
     "description": "A powerful, self-hosted file-sharing platform built with PHP and Laravel with a Vue.js frontend. It offers secure, customizable file-transfer capabilities through an elegant user interface, giving you complete control over your data while providing a seamless experience for both senders and recipients."
+  },
+  "https://github.com/binwiederhier/ntfy": {
+    "path": "commands/ntfy",
+    "category": "Notifications",
+    "name": "ntfy",
+    "description": "Send push notifications to your phone or desktop using PUT/POST"
   }
 }
