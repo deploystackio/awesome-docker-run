@@ -106,5 +106,11 @@
     "category": "Database",
     "name": "chartdb",
     "description": "Database diagrams editor that allows you to visualize and design your DB with a single query."
+  },
+  "https://github.com/Portkey-AI/gateway": {
+    "path": "commands/aI-gateway",
+    "category": "AI",
+    "name": "gateway",
+    "description": "A blazing fast AI Gateway with integrated guardrails. Route to 200+ LLMs, 50+ AI Guardrails with 1 fast & friendly API."
   }
 }
