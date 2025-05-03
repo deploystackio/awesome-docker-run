@@ -70,5 +70,11 @@
     "category": "Audio",
     "name": "matchering",
     "description": "🎚️ Open Source Audio Matching and Mastering"
+  },
+  "https://github.com/explodingcamera/liwan": {
+    "path": "commands/liwan",
+    "category": "Analytics",
+    "name": "liwan",
+    "description": "liwan - Lightweight Analytics"
   }
 }
