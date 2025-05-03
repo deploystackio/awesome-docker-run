@@ -76,5 +76,11 @@
     "category": "Analytics",
     "name": "liwan",
     "description": "liwan - Lightweight Analytics"
+  },
+  "https://github.com/jortilles/EDA": {
+    "path": "commands/EDA",
+    "category": "Analytics",
+    "name": "EDA",
+    "description": "Enterprise Data Analytics by Jortilles ( EDA )"
   }
 }
