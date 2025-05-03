@@ -120,7 +120,7 @@ function findImageIndex(tokens) {
     '--storage-opt',
     '--tmpfs',
     '--restart', // Takes an argument like 'always' or 'on-failure:5'
-    // Add more as needed
+    '--pull', // Takes an argument like 'always', 'missing', 'never'
   ]);
 
   let i = 2; // Start after "docker run"
