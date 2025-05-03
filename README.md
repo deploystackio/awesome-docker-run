@@ -87,6 +87,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 
 - [chartdb](commands/chartdb/) - Database diagrams editor that allows you to visualize and design your DB with a single query.
 - [meilisearch](commands/meilisearch/) - A lightning-fast search engine API bringing AI-powered hybrid search to your sites and applications.
+- [qdrant](commands/qdrant/) - Qdrant - High-performance, massive-scale Vector Database and Vector Search Engine for the next generation of AI. Also available in the cloud https://cloud.qdrant.io/
 - [surrealdb](commands/surrealdb/) - A scalable, distributed, collaborative, document-graph database, for the realtime web
 
 ### eBook
