@@ -136,5 +136,11 @@
     "category": "Finance",
     "name": "actual",
     "description": "A local-first personal finance app"
+  },
+  "https://github.com/pglombardo/PasswordPusher": {
+    "path": "commands/password-pusher",
+    "category": "Security",
+    "name": "PasswordPusher",
+    "description": "🔐   Securely share sensitive information with automatic expiration & deletion after a set number of views or duration.  Track who, what and when with full audit logs."
   }
 }
