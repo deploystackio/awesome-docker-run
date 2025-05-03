@@ -20,6 +20,7 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
   - [Database](#database)
   - [eBook](#ebook)
   - [File Sharing](#file-sharing)
+  - [Finance](#finance)
   - [Monitoring](#monitoring)
   - [Notifications](#notifications)
   - [RSS](#rss)
@@ -97,6 +98,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### File Sharing
 
 - [Erugo](commands/Erugo/) - A powerful, self-hosted file-sharing platform built with PHP and Laravel with a Vue.js frontend. It offers secure, customizable file-transfer capabilities through an elegant user interface, giving you complete control over your data while providing a seamless experience for both senders and recipients.
+
+### Finance
+
+- [actual](commands/actualbudget/) - A local-first personal finance app
 
 ### Monitoring
 
