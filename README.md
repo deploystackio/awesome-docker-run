@@ -24,6 +24,7 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
   - [Monitoring](#monitoring)
   - [Notifications](#notifications)
   - [RSS](#rss)
+  - [Security](#security)
   - [YouTube](#youtube)
 - [License](#license)
 <!-- TOC_END -->
@@ -115,6 +116,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### RSS
 
 - [wewe-rss](commands/wewe-rss/) - 🤗更优雅的微信公众号订阅方式，支持私有化部署、微信公众号RSS生成（基于微信读书）
+
+### Security
+
+- [PasswordPusher](commands/password-pusher/) - 🔐   Securely share sensitive information with automatic expiration & deletion after a set number of views or duration.  Track who, what and when with full audit logs.
 
 ### YouTube
 
