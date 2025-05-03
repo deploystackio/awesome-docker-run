@@ -100,5 +100,11 @@
     "category": "Notifications",
     "name": "ntfy",
     "description": "Send push notifications to your phone or desktop using PUT/POST"
+  },
+  "https://github.com/chartdb/chartdb": {
+    "path": "commands/chartdb",
+    "category": "Database",
+    "name": "chartdb",
+    "description": "Database diagrams editor that allows you to visualize and design your DB with a single query."
   }
 }
