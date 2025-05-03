@@ -118,5 +118,11 @@
     "category": "Database",
     "name": "meilisearch",
     "description": "A lightning-fast search engine API bringing AI-powered hybrid search to your sites and applications."
+  },
+  "https://github.com/surrealdb/surrealdb": {
+    "path": "commands/surrealdb",
+    "category": "Database",
+    "name": "surrealdb",
+    "description": "A scalable, distributed, collaborative, document-graph database, for the realtime web"
   }
 }
