@@ -64,5 +64,11 @@
     "category": "Monitoring",
     "name": "uptime-kuma",
     "description": "A fancy self-hosted monitoring tool"
+  },
+  "https://github.com/sergree/matchering": {
+    "path": "commands/matchering",
+    "category": "Audio",
+    "name": "matchering",
+    "description": "🎚️ Open Source Audio Matching and Mastering"
   }
 }
