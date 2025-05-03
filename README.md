@@ -94,6 +94,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 
 ### YouTube
 
+- [metube](commands/metube/) - Self-hosted YouTube downloader (web UI for youtube-dl / yt-dlp)
 - [youtube-dl-server](commands/youtube-dl-server/) - Web / REST interface for downloading youtube videos onto a server.
 - [yt-dlp-web-ui](commands/yt-dlp-web-ui/) - A terrible web ui and RPC server for yt-dlp. Designed to be self-hosted.
 
