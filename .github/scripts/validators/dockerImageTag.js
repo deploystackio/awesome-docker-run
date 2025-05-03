@@ -16,8 +16,11 @@ function validateDockerImageTag(fileContent, filePath) {
   // Extract the Docker run command
   const dockerRunCmd = dockerRunMatch[1].trim();
   
+  // Preprocess the command to handle line continuations (\ followed by newline)
+  const processedCmd = dockerRunCmd.replace(/\\\n\s*/g, ' '); 
+  
   // Tokenize the command properly
-  const tokens = tokenizeCommand(dockerRunCmd);
+  const tokens = tokenizeCommand(processedCmd);
   
   // Find the image index in the command
   const imageIndex = findImageIndex(tokens);
