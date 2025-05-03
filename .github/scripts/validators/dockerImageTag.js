@@ -16,44 +16,79 @@ function validateDockerImageTag(fileContent, filePath) {
   // Extract the Docker run command
   const dockerRunCmd = dockerRunMatch[1].trim();
   
-  // Split the command by whitespace, preserving quoted strings
-  const parts = splitCommandLine(dockerRunCmd);
+  // Parse the Docker command into components
+  const parsedCommand = parseDockerCommand(dockerRunCmd);
   
-  // Find the image part (it should be the first non-flag argument after "docker run")
-  let imageIndex = -1;
+  if (!parsedCommand.image) {
+    return `No Docker image found in the run command in ${filePath}`;
+  }
+  
+  // Check if the image has a tag (contains a colon that's not part of a registry port)
+  const hasTag = /:([^/]+)$/.test(parsedCommand.image);
+  
+  if (!hasTag) {
+    return `Docker image "${parsedCommand.image}" in ${filePath} does not specify a tag. Please use a specific tag (e.g., ${parsedCommand.image}:latest)`;
+  }
+  
+  return null; // No errors
+}
+
+/**
+ * Parses a Docker run command into its components
+ * @param {string} commandLine - Docker run command to parse
+ * @returns {Object} Object with image and other command components
+ */
+function parseDockerCommand(commandLine) {
+  // Split the command by whitespace, preserving quoted strings
+  const parts = splitCommandLine(commandLine);
+  
+  const result = {
+    image: null,
+    entrypoint: null,
+    command: []
+  };
   
   // Start after "docker run"
-  for (let i = 2; i < parts.length; i++) {
-    // Skip flags and their values
-    if (parts[i].startsWith('-')) {
+  let i = 2;
+  
+  // Process flags and their values
+  while (i < parts.length) {
+    const part = parts[i];
+    
+    // Check for entrypoint flag
+    if (part === '--entrypoint') {
+      if (i + 1 < parts.length) {
+        result.entrypoint = parts[i + 1];
+        i += 2;
+        continue;
+      }
+    }
+    
+    // Skip other flags and their values
+    if (part.startsWith('-')) {
       // If it's a flag with a value (like -p 80:80), skip the next part
-      if (!parts[i].includes('=') && 
+      if (!part.includes('=') && 
           i + 1 < parts.length && 
           !parts[i + 1].startsWith('-')) {
-        i++;
+        i += 2;
+      } else {
+        i += 1;
       }
       continue;
     }
     
     // First non-flag argument should be the image
-    imageIndex = i;
-    break;
+    if (!result.image) {
+      result.image = part;
+    } else {
+      // Anything after the image is considered part of the command
+      result.command.push(part);
+    }
+    
+    i += 1;
   }
   
-  if (imageIndex === -1) {
-    return `No Docker image found in the run command in ${filePath}`;
-  }
-  
-  const image = parts[imageIndex];
-  
-  // Check if the image has a tag (contains a colon that's not part of a registry port)
-  const hasTag = /:([^/]+)$/.test(image);
-  
-  if (!hasTag) {
-    return `Docker image "${image}" in ${filePath} does not specify a tag. Please use a specific tag (e.g., ${image}:latest)`;
-  }
-  
-  return null; // No errors
+  return result;
 }
 
 /**
