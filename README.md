@@ -17,6 +17,7 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
   - [Audio](#audio)
   - [Automation](#automation)
   - [CMS](#cms)
+  - [Database](#database)
   - [eBook](#ebook)
   - [File Sharing](#file-sharing)
   - [Monitoring](#monitoring)
@@ -80,6 +81,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### CMS
 
 - [Ghost](commands/ghost/) - Independent technology for modern publishing, memberships, subscriptions and newsletters.
+
+### Database
+
+- [chartdb](commands/chartdb/) - Database diagrams editor that allows you to visualize and design your DB with a single query.
 
 ### eBook
 
