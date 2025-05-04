@@ -142,5 +142,11 @@
     "category": "Security",
     "name": "PasswordPusher",
     "description": "🔐   Securely share sensitive information with automatic expiration & deletion after a set number of views or duration.  Track who, what and when with full audit logs."
+  },
+  "https://github.com/mylar3/mylar3": {
+    "path": "commands/mylar3",
+    "category": "eBook",
+    "name": "mylar3",
+    "description": "The python3 version of the automated Comic Book downloader (cbr/cbz) for use with various download clients."
   }
 }
