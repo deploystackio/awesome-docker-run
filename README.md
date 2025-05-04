@@ -105,6 +105,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 - [chartdb](commands/chartdb/) - Database diagrams editor that allows you to visualize and design your DB with a single query.
 - [mathesar](commands/mathesar/) - An intuitive spreadsheet-like interface that lets users of all technical skill levels view, edit, query, and collaborate on Postgres data directly—100% open source and self hosted, with native Postgres access control.
 - [meilisearch](commands/meilisearch/) - A lightning-fast search engine API bringing AI-powered hybrid search to your sites and applications.
+- [nocodb](commands/nocodb/) - 🔥 🔥 🔥 Open Source Airtable Alternative
 - [qdrant](commands/qdrant/) - Qdrant - High-performance, massive-scale Vector Database and Vector Search Engine for the next generation of AI. Also available in the cloud https://cloud.qdrant.io/
 - [surrealdb](commands/surrealdb/) - A scalable, distributed, collaborative, document-graph database, for the realtime web
 
