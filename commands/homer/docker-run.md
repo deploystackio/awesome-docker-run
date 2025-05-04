@@ -1,6 +1,6 @@
 ---
 repo: "https://github.com/bastienwirtz/homer"
-category: "<MAIN_CATEGORY>"
+category: "Dashboard"
 logo: null  # Optional - provide URL to logo if available, 1:1 format only
 ---
 
