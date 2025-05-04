@@ -14,5 +14,5 @@ docker run -d \
     -e "TZ=America/New_York" \
     -e "ATK_LOCALE=en" \
     -e "ATK_SITE_DEFAULT=Artalk Blog" \
-    artalk/artalk-go
+    artalk/artalk-go:latest
 ```
