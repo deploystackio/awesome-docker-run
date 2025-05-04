@@ -113,6 +113,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### Finance
 
 - [actual](commands/actualbudget/) - A local-first personal finance app
+- [frankfurter](commands/frankfurter/) - 💱 Currency data API
 
 ### Forum
 
