@@ -25,6 +25,7 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
   - [Finance](#finance)
   - [Forum](#forum)
   - [Monitoring](#monitoring)
+  - [Notes](#notes)
   - [Notifications](#notifications)
   - [RSS](#rss)
   - [Security](#security)
@@ -129,6 +130,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 
 - [changedetection.io](commands/changedetection/) - The best and simplest free open source web page change detection, website watcher,  restock monitor and notification service. Restock Monitor, change detection. Designed for simplicity - Simply monitor which websites had a text change for free. Free Open source web page change detection, Website defacement monitoring, Price change notification
 - [uptime-kuma](commands/uptime-kuma/) - A fancy self-hosted monitoring tool
+
+### Notes
+
+- [memos](commands/memos/) - An open-source, lightweight note-taking solution. The pain-less way to create your meaningful notes. Your Notes, Your Way.
 
 ### Notifications
 
