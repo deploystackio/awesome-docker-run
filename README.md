@@ -92,6 +92,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 
 ### CMS
 
+- [Cockpit](commands/cockpit/) - Cockpit Core - Content Platform
 - [Ghost](commands/ghost/) - Independent technology for modern publishing, memberships, subscriptions and newsletters.
 - [Vvveb](commands/vvveb/) - Powerful and easy to use cms to build websites, blogs or ecommerce stores.
 
