@@ -148,5 +148,11 @@
     "category": "eBook",
     "name": "mylar3",
     "description": "The python3 version of the automated Comic Book downloader (cbr/cbz) for use with various download clients."
+  },
+  "https://github.com/AlexSciFier/neonlink": {
+    "path": "commands/neonlink",
+    "category": "Bookmark",
+    "name": "neonlink",
+    "description": "Simple self-hosted bookmark service."
   }
 }
