@@ -214,5 +214,11 @@
     "category": "Dashboard",
     "name": "metabase",
     "description": "The easy-to-use open source Business Intelligence and Embedded Analytics tool that lets everyone work with data :bar_chart:"
+  },
+  "https://github.com/nocodb/nocodb": {
+    "path": "commands/nocodb",
+    "category": "Database",
+    "name": "nocodb",
+    "description": "🔥 🔥 🔥 Open Source Airtable Alternative"
   }
 }
