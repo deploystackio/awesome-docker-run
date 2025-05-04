@@ -22,6 +22,7 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
   - [eBook](#ebook)
   - [File Sharing](#file-sharing)
   - [Finance](#finance)
+  - [Forum](#forum)
   - [Monitoring](#monitoring)
   - [Notifications](#notifications)
   - [RSS](#rss)
@@ -110,6 +111,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### Finance
 
 - [actual](commands/actualbudget/) - A local-first personal finance app
+
+### Forum
+
+- [Artalk](commands/artalk/) - 🌌  Your Self-hosted Comment System. | 自托管评论系统
 
 ### Monitoring
 
