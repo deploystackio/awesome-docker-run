@@ -130,6 +130,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 
 ### RSS
 
+- [fusion](commands/0x2e-fusion/) - A lightweight, self-hosted friendly RSS reader
 - [wewe-rss](commands/wewe-rss/) - 🤗更优雅的微信公众号订阅方式，支持私有化部署、微信公众号RSS生成（基于微信读书）
 
 ### Security
