@@ -84,6 +84,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 
 ### Bookmark
 
+- [grimoire](commands/grimoire/) - Bookmark manager for the wizards 🧙
 - [neonlink](commands/neonlink/) - Simple self-hosted bookmark service.
 
 ### CMS
