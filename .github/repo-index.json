@@ -160,5 +160,11 @@
     "category": "Bookmark",
     "name": "grimoire",
     "description": "Bookmark manager for the wizards 🧙"
+  },
+  "https://github.com/ArtalkJS/Artalk": {
+    "path": "commands/artalk",
+    "category": "Forum",
+    "name": "Artalk",
+    "description": "🌌  Your Self-hosted Comment System. | 自托管评论系统"
   }
 }
