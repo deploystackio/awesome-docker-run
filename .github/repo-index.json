@@ -172,5 +172,11 @@
     "category": "Database",
     "name": "mathesar",
     "description": "An intuitive spreadsheet-like interface that lets users of all technical skill levels view, edit, query, and collaborate on Postgres data directly—100% open source and self hosted, with native Postgres access control."
+  },
+  "https://github.com/givanz/Vvveb": {
+    "path": "commands/vvveb",
+    "category": "CMS",
+    "name": "Vvveb",
+    "description": "Powerful and easy to use cms to build websites, blogs or ecommerce stores."
   }
 }
