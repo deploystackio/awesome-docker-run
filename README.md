@@ -95,6 +95,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### eBook
 
 - [BookBounty](commands/BookBounty/) - Retrieve missing Readarr books from Library Genesis.
+- [mylar3](commands/mylar3/) - The python3 version of the automated Comic Book downloader (cbr/cbz) for use with various download clients.
 
 ### File Sharing
 
