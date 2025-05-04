@@ -9,7 +9,7 @@ logo: "https://raw.githubusercontent.com/nocodb/nocodb/develop/packages/nc-gui/a
 ```bash
 docker run -d \
   --name noco \
-  -v "./nocodb:/usr/app/data/ \
+  -v "./nocodb:/usr/app/data/" \
   -p 8080:8080 \
   nocodb/nocodb:latest
 ```
