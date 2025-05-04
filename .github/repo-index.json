@@ -202,5 +202,11 @@
     "category": "Dashboard",
     "name": "homer",
     "description": "A very simple static homepage for your server."
+  },
+  "https://github.com/usememos/memos": {
+    "path": "commands/memos",
+    "category": "Notes",
+    "name": "memos",
+    "description": "An open-source, lightweight note-taking solution. The pain-less way to create your meaningful notes. Your Notes, Your Way."
   }
 }
