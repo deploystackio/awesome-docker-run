@@ -190,5 +190,11 @@
     "category": "RSS",
     "name": "fusion",
     "description": "A lightweight, self-hosted friendly RSS reader"
+  },
+  "https://github.com/Forceu/Gokapi": {
+    "path": "commands/Gokapi",
+    "category": "File Sharing",
+    "name": "Gokapi",
+    "description": "Lightweight selfhosted Firefox Send alternative without public upload. AWS S3 supported."
   }
 }
