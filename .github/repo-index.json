@@ -154,5 +154,11 @@
     "category": "Bookmark",
     "name": "neonlink",
     "description": "Simple self-hosted bookmark service."
+  },
+  "https://github.com/goniszewski/grimoire": {
+    "path": "commands/grimoire",
+    "category": "Bookmark",
+    "name": "grimoire",
+    "description": "Bookmark manager for the wizards 🧙"
   }
 }
