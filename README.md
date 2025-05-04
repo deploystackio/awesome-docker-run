@@ -109,6 +109,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### File Sharing
 
 - [Erugo](commands/Erugo/) - A powerful, self-hosted file-sharing platform built with PHP and Laravel with a Vue.js frontend. It offers secure, customizable file-transfer capabilities through an elegant user interface, giving you complete control over your data while providing a seamless experience for both senders and recipients.
+- [Gokapi](commands/Gokapi/) - Lightweight selfhosted Firefox Send alternative without public upload. AWS S3 supported.
 
 ### Finance
 
