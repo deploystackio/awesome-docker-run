@@ -98,6 +98,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### Dashboard
 
 - [homer](commands/homer/) - A very simple static homepage for your server.
+- [metabase](commands/metabase/) - The easy-to-use open source Business Intelligence and Embedded Analytics tool that lets everyone work with data :bar_chart:
 
 ### Database
 
