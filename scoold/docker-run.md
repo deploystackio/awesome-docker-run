@@ -1,0 +1,11 @@
+---
+repo: "https://github.com/Erudika/scoold"
+category: "Forum"
+---
+
+# Docker Run Command
+
+```bash
+$ docker run -ti -p 8000:8000 -v ./scoold-application.conf:/scoold/application.conf \
+  -e JAVA_OPTS="-Dconfig.file=/scoold/application.conf" erudikaltd/scoold:latest_stable
+```
