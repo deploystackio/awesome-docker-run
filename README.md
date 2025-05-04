@@ -18,6 +18,7 @@ A curated collection of Docker run commands that can be easily deployed via [Dep
   - [Automation](#automation)
   - [Bookmark](#bookmark)
   - [CMS](#cms)
+  - [Dashboard](#dashboard)
   - [Database](#database)
   - [eBook](#ebook)
   - [File Sharing](#file-sharing)
@@ -92,6 +93,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 
 - [Ghost](commands/ghost/) - Independent technology for modern publishing, memberships, subscriptions and newsletters.
 - [Vvveb](commands/vvveb/) - Powerful and easy to use cms to build websites, blogs or ecommerce stores.
+
+### Dashboard
+
+- [homer](commands/homer/) - A very simple static homepage for your server.
 
 ### Database
 
