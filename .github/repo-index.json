@@ -184,5 +184,11 @@
     "category": "Finance",
     "name": "frankfurter",
     "description": "💱 Currency data API"
+  },
+  "https://github.com/0x2E/fusion": {
+    "path": "commands/0x2e-fusion",
+    "category": "RSS",
+    "name": "fusion",
+    "description": "A lightweight, self-hosted friendly RSS reader"
   }
 }
