@@ -166,5 +166,11 @@
     "category": "Forum",
     "name": "Artalk",
     "description": "🌌  Your Self-hosted Comment System. | 自托管评论系统"
+  },
+  "https://github.com/mathesar-foundation/mathesar": {
+    "path": "commands/mathesar",
+    "category": "Database",
+    "name": "mathesar",
+    "description": "An intuitive spreadsheet-like interface that lets users of all technical skill levels view, edit, query, and collaborate on Postgres data directly—100% open source and self hosted, with native Postgres access control."
   }
 }
