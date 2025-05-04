@@ -220,5 +220,11 @@
     "category": "Database",
     "name": "nocodb",
     "description": "🔥 🔥 🔥 Open Source Airtable Alternative"
+  },
+  "https://github.com/Cockpit-HQ/Cockpit": {
+    "path": "commands/cockpit",
+    "category": "CMS",
+    "name": "Cockpit",
+    "description": "Cockpit Core - Content Platform"
   }
 }
