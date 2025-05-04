@@ -196,5 +196,11 @@
     "category": "File Sharing",
     "name": "Gokapi",
     "description": "Lightweight selfhosted Firefox Send alternative without public upload. AWS S3 supported."
+  },
+  "https://github.com/bastienwirtz/homer": {
+    "path": "commands/homer",
+    "category": "Dashboard",
+    "name": "homer",
+    "description": "A very simple static homepage for your server."
   }
 }
