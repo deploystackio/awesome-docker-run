@@ -178,5 +178,11 @@
     "category": "CMS",
     "name": "Vvveb",
     "description": "Powerful and easy to use cms to build websites, blogs or ecommerce stores."
+  },
+  "https://github.com/lineofflight/frankfurter": {
+    "path": "commands/frankfurter",
+    "category": "Finance",
+    "name": "frankfurter",
+    "description": "💱 Currency data API"
   }
 }
