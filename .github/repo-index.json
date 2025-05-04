@@ -208,5 +208,11 @@
     "category": "Notes",
     "name": "memos",
     "description": "An open-source, lightweight note-taking solution. The pain-less way to create your meaningful notes. Your Notes, Your Way."
+  },
+  "https://github.com/metabase/metabase": {
+    "path": "commands/metabase",
+    "category": "Dashboard",
+    "name": "metabase",
+    "description": "The easy-to-use open source Business Intelligence and Embedded Analytics tool that lets everyone work with data :bar_chart:"
   }
 }
