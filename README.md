@@ -128,6 +128,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.
 ### Forum
 
 - [Artalk](commands/artalk/) - 🌌  Your Self-hosted Comment System. | 自托管评论系统
+- [scoold](commands/scoold/) - A Stack Overflow clone for teams (self-hosted or hosted)
 
 ### Monitoring
 
