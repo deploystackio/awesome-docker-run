@@ -226,5 +226,11 @@
     "category": "CMS",
     "name": "Cockpit",
     "description": "Cockpit Core - Content Platform"
+  },
+  "https://github.com/Erudika/scoold": {
+    "path": "commands/scoold",
+    "category": "Forum",
+    "name": "scoold",
+    "description": "A Stack Overflow clone for teams (self-hosted or hosted)"
   }
 }
