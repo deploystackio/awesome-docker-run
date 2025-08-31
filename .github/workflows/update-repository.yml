@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.check-label.outputs.has_valid_label == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
           token: ${{ secrets.APP_INSTALLATION_TOKEN }}
@@ -127,7 +127,7 @@ jobs:
     if: needs.check-label.outputs.has_valid_label == 'true'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: main
           # Ensure we get the latest code including changes from previous job
