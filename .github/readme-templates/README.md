@@ -17,7 +17,7 @@
 
 ## 🔄 Updates
 
-If you want to update the IaC templates, please create a pull request ([Contributing guide here](https://github.com/deploystackio/awesome-docker-run/blob/main/CONTRIBUTING.md)) to modify the `docker run` command. After the PR get successfully closed, the IaC templates will be updated automatically.
+If you want to update the IaC templates, please create a pull request ([Contributing guide here](https://github.com/deploystackio/awesome-docker-run/blob/main/CONTRIBUTING.md)) to modify the `docker run` command. After the PR gets successfully closed, the IaC templates will be updated automatically.
 
 ## 💬 Need Help?
 
